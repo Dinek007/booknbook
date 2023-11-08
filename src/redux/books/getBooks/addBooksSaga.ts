@@ -3,6 +3,8 @@ import { booksActions, booksPerPageNumber } from "../books.slice";
 import { booksSelectors } from "../books.selectors";
 
 export function* addBooksSaga(action: booksActions["addBooks"]) {
+  const storeCurentPage = yield* select(booksSelectors.currentPage);
+  if(storeCurentPage > 100000) return
   let responseGetBooks;
   yield* put(booksActions.setIsLoading(true));
 
@@ -22,12 +24,16 @@ export function* addBooksSaga(action: booksActions["addBooks"]) {
       yield* put(
         booksActions.setResponseCommunicate(responseGetBooks.error.message)
       );
-    } else if (!responseGetBooks?.items?.length) {
+    } 
+    
+    if (!responseGetBooks?.items?.length) {
       yield* put(booksActions.setCurrentPage(1000000));
+    } else {
+      yield* put(booksActions.addBooksItems(responseGetBooks?.items));
+      yield* put(booksActions.setCurrentPage(currentPage + 1));
     }
 
-    yield* put(booksActions.addBooksItems(responseGetBooks?.items));
-    yield* put(booksActions.setCurrentPage(currentPage + 1));
+   
   } catch (error) {
     console.error(error);
   }

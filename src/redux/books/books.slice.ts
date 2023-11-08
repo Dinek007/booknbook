@@ -20,6 +20,7 @@ export type BooksData = {
   title: string;
   author: string;
   img: string;
+  id?: string;
 };
 
 const initialBooksState: BooksType = {
@@ -33,6 +34,7 @@ export class BooksState {
   public isLoading: boolean = false;
   public currentQuery: string = "";
   public currentPage: number = 1;
+  public filter: { queryInTitle: boolean } = { queryInTitle: false };
 }
 
 export const booksPerPageNumber = 20;
@@ -50,7 +52,7 @@ export const booksSlice = createSlice({
       console.log(action.payload);
       const newItems = [];
       newItems.push(...state.books.items);
-      newItems.push(...action.payload);
+      if(action.payload) newItems.push(...action.payload);
       state.books.items = newItems;
     },
     setResponseCommunicate: (state, action: PayloadAction<string>) => {
@@ -67,6 +69,9 @@ export const booksSlice = createSlice({
     },
     setCurrentQuery: (state, action: PayloadAction<string>) => {
       state.currentQuery = action.payload;
+    },
+    setfilterQueryInTitle: (state, action: PayloadAction<boolean>) => {
+      state.filter.queryInTitle = action.payload;
     },
   },
 });

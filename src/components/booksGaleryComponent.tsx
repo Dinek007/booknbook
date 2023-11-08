@@ -32,7 +32,7 @@ export const BooksGaleryComponent: React.FC<BooksGaleryComponentPropsType> = ({
       >
         {booksData?.length
           ? booksData?.map((book) => {
-              return <BookItemComponent key={book.title} {...book} />;
+              return <BookItemComponent key={book.id} {...book} />;
             })
           : !isLoading && (
               <Typography
