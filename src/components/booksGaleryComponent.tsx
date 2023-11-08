@@ -17,33 +17,50 @@ export const BooksGaleryComponent: React.FC<BooksGaleryComponentPropsType> = ({
   return (
     <Box
       sx={{
-        width: "90vw",
         display: "flex",
-        flexWrap: "wrap",
-        flexDirection: "row",
-        justifyContent: "center",
+        flexDirection: "column",
       }}
     >
-      {booksData?.length
-        ? booksData?.map((book) => {
-            return <BookItemComponent key={book.title} {...book} />;
-          })
-        : !isLoading && (
-            <Typography
-              variant="h2"
-              sx={{
-                position: "absolute",
-                top: "50vh",
-                transform: "translate(0, -50%)",
-                color: theme.palette.background.paper,
-                [theme.breakpoints.down("sm")]: {
-                  width: "230px",
-                },
-              }}
-            >
-              {Communicates.EnterBookName}
-            </Typography>
-          )}
+      <Box
+        sx={{
+          width: "90vw",
+          display: "flex",
+          flexWrap: "wrap",
+          flexDirection: "row",
+          justifyContent: "center",
+        }}
+      >
+        {booksData?.length
+          ? booksData?.map((book) => {
+              return <BookItemComponent key={book.title} {...book} />;
+            })
+          : !isLoading && (
+              <Typography
+                variant="h2"
+                sx={{
+                  position: "absolute",
+                  top: "50vh",
+                  transform: "translate(0, -50%)",
+                  color: theme.palette.background.paper,
+                  [theme.breakpoints.down("sm")]: {
+                    width: "230px",
+                  },
+                }}
+              >
+                {Communicates.EnterBookName}
+              </Typography>
+            )}
+      </Box>
+      <Box
+        sx={{
+          width: "90vw",
+          display: "flex",
+          flexWrap: "wrap",
+          flexDirection: "row",
+          justifyContent: "center",
+          marginTop: "50px",
+        }}
+      ></Box>
     </Box>
   );
 };

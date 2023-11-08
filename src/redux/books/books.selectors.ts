@@ -7,7 +7,6 @@ const booksSlice: CreatedSelectors[StoreKeys.Books] = (state: StoreState) =>
 
 const booksDataToShow = createSelector(booksSlice, (reducerState) => {
   return reducerState?.books?.items?.map((item) => {
-    console.log(item?.volumeInfo);
     return {
       author: item?.volumeInfo?.authors?.join(", "),
       title: item?.volumeInfo?.title,
@@ -26,8 +25,18 @@ const isLoading = createSelector(booksSlice, (reducerState) => {
   return reducerState.isLoading;
 });
 
+const currentPage = createSelector(booksSlice, (reducerState) => {
+  return reducerState.currentPage;
+});
+
+const currentQuery = createSelector(booksSlice, (reducerState) => {
+  return reducerState.currentQuery;
+});
+
 export const booksSelectors = {
   booksDataToShow,
   responseCommunicate,
   isLoading,
+  currentPage,
+  currentQuery,
 };

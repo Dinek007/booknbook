@@ -30,6 +30,10 @@ export const getComponents = (palette: Palette): Components =>
     MuiFilledInput: {
       styleOverrides: {
         input: {
+          "&:-webkit-autofill": {
+            "-webkit-box-shadow": `0 0 0 100px ${palette.background.paper} inset`,
+            "-webkit-text-fill-color": palette.text.secondary,
+          },
           background: "rgb(255, 255, 255, 0.1)",
           borderRadius: "7px",
           width: "384px",

@@ -3,32 +3,52 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { booksActions } from "../redux/books/books.slice";
 import { booksSelectors } from "../redux/books/books.selectors";
-import { useEffect } from "react";
 import { ErrorComponent } from "../components/errorComponent";
 import { BooksGaleryComponent } from "../components/booksGaleryComponent";
 import { SearchFormComponent } from "../components/searchFormComponent";
+import { useEffect, useState } from "react";
 
 interface FormData {
   query: string;
 }
 
 export const BookSearchPage = () => {
-  const dispatch = useDispatch();
-  const { control, handleSubmit } = useForm<FormData>();
-
-  const onSubmit = (data: FormData) => {
-    dispatch(booksActions.getBooks(data.query || ""));
-    dispatch(booksActions.clearBooksState({}));
-    dispatch(booksActions.setResponseCommunicate(""));
-  };
-
   const booksData = useSelector(booksSelectors.booksDataToShow);
   const responseCommunite = useSelector(booksSelectors.responseCommunicate);
   const isLoading = useSelector(booksSelectors.isLoading);
+  const currentPage = useSelector(booksSelectors.currentPage);
+
+  const [isLoadingScroll, setIsLoadingScroll] = useState<boolean>(false);
+  const { control, handleSubmit } = useForm<FormData>();
+  const dispatch = useDispatch();
+
+  const onSubmitSearchButton = (data: FormData) => {
+    dispatch(booksActions.setCurrentQuery(data.query || ""));
+    dispatch(booksActions.getBooks(data.query || ""));
+  };
 
   useEffect(() => {
-    console.log("booksData", booksData);
-  }, [booksData]);
+    const handleScroll = () => {
+      const margin = 10; // Margines, który pozwoli na wcześniejsze ładowanie nowych danych
+
+      if (
+        window.innerHeight + window.scrollY + margin >=
+        document.documentElement.offsetHeight
+      ) {
+        if (!isLoading && !isLoadingScroll && currentPage < 100000) {
+          setIsLoadingScroll(true);
+          dispatch(booksActions.setIsLoading(true));
+          dispatch(booksActions.addBooks(currentPage));
+          setIsLoadingScroll(false);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isLoading, isLoadingScroll]);
 
   return (
     <Box
@@ -41,25 +61,22 @@ export const BookSearchPage = () => {
     >
       <SearchFormComponent
         control={control}
-        handleSubmit={handleSubmit(onSubmit)}
+        handleSubmit={handleSubmit(onSubmitSearchButton)}
       />
 
       {responseCommunite && <ErrorComponent message={responseCommunite} />}
+
+      <BooksGaleryComponent booksData={booksData} isLoading={isLoading} />
 
       {isLoading && (
         <CircularProgress
           sx={{
             scale: "250%",
             opacity: "50%",
-            position: "absolute",
-            top: "50vh",
-            transform: "translate(0, -50%)",
           }}
           color="inherit"
         />
       )}
-
-      <BooksGaleryComponent booksData={booksData} isLoading={isLoading} />
     </Box>
   );
 };

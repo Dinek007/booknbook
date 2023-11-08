@@ -1,11 +1,14 @@
 import { call, put } from "typed-redux-saga";
-import { booksActions } from "../books.slice";
+import { booksActions, booksPerPageNumber } from "../books.slice";
 import { Communicates } from "../../../consts";
 
 export function* getBooksSaga(action: booksActions["getBooks"]) {
   let responseGetBooks;
 
   yield* put(booksActions.setIsLoading(true));
+  yield* put(booksActions.setResponseCommunicate(""));
+  yield* put(booksActions.clearBooksState({}));
+  yield* put(booksActions.setCurrentQuery(action.payload));
 
   try {
     responseGetBooks = yield* call(fetchBooksFromApi, action.payload);
@@ -19,6 +22,7 @@ export function* getBooksSaga(action: booksActions["getBooks"]) {
     }
 
     yield* put(booksActions.setBooks(responseGetBooks));
+    yield* put(booksActions.setCurrentPage(1));
   } catch (error) {
     console.error(error);
   }
@@ -27,7 +31,9 @@ export function* getBooksSaga(action: booksActions["getBooks"]) {
 }
 
 const fetchBooksFromApi = (query: string): Promise<any> => {
-  return fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`)
+  return fetch(
+    `https://www.googleapis.com/books/v1/volumes?q=${query}&startIndex=0&maxResults=${booksPerPageNumber}`
+  )
     .then((response) => response.json())
     .catch((error) => error);
 };

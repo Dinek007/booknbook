@@ -47,6 +47,7 @@ export const SearchFormComponent: React.FC<SearchFormComponentPropsType> = ({
                 [theme.breakpoints.down("sm")]: {
                   width: "150px",
                 },
+
                 "& .MuiInputLabel-root.Mui-focused": {
                   color: theme.palette.text.secondary,
                 },

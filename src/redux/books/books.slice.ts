@@ -31,15 +31,27 @@ export class BooksState {
   public books: BooksType = initialBooksState;
   public responseCommunicate: string = "";
   public isLoading: boolean = false;
+  public currentQuery: string = "";
+  public currentPage: number = 1;
 }
+
+export const booksPerPageNumber = 20;
 
 export const booksSlice = createSlice({
   initialState: { ...new BooksState() },
   name: StoreKeys.Books,
   reducers: {
     getBooks: (state, _action: PayloadAction<string>) => state,
+    addBooks: (state, _action: PayloadAction<number>) => state,
     setBooks: (state, action: PayloadAction<BooksType>) => {
       state.books = action.payload;
+    },
+    addBooksItems: (state, action: PayloadAction<BookItem[]>) => {
+      console.log(action.payload);
+      const newItems = [];
+      newItems.push(...state.books.items);
+      newItems.push(...action.payload);
+      state.books.items = newItems;
     },
     setResponseCommunicate: (state, action: PayloadAction<string>) => {
       state.responseCommunicate = action.payload;
@@ -48,7 +60,13 @@ export const booksSlice = createSlice({
       state.isLoading = action.payload;
     },
     clearBooksState: (state, _action) => {
-      state.books = initialBooksState;
+      state.books = { ...state.books, items: [] };
+    },
+    setCurrentPage: (state, action: PayloadAction<number>) => {
+      state.currentPage = action.payload;
+    },
+    setCurrentQuery: (state, action: PayloadAction<string>) => {
+      state.currentQuery = action.payload;
     },
   },
 });
