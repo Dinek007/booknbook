@@ -1,15 +1,20 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import Tilt from "react-parallax-tilt";
 import BrokenImageIcon from '@mui/icons-material/BrokenImage';
+import { MissingInformations, TitlesAndNames } from "../consts";
 
-type BookItemProps = {
+export type BookItemPropsType = {
   title: string;
   author: string;
   img: string;
 };
 
-export const BookItemComponent = ({ title, author, img }: BookItemProps) => {
-  const theme = useTheme() as any;
+export const BookItemComponent: React.FC<BookItemPropsType> = ({
+  title,
+  author,
+  img,
+}) => {
+  const theme = useTheme();
   const maxTitleLength = 60;
   const truncatedTitle =
     title?.length > maxTitleLength
@@ -27,9 +32,9 @@ export const BookItemComponent = ({ title, author, img }: BookItemProps) => {
         display: "flex",
         alignItems: "center",
         [theme.breakpoints.down("sm")]: {
-            width: "280px",
-            flexDirection: "column"
-          },
+          width: "280px",
+          flexDirection: "column",
+        },
         position: "relative",
         margin: "30px",
         boxShadow: "0px 0px 10px 3px #111111",
@@ -38,7 +43,7 @@ export const BookItemComponent = ({ title, author, img }: BookItemProps) => {
         borderRadius: "10px",
       }}
     >
-      {img === "unknown" ? (
+      {!img ? (
         <BrokenImageIcon
           sx={{
             width: "150px",
@@ -47,9 +52,8 @@ export const BookItemComponent = ({ title, author, img }: BookItemProps) => {
           }}
         />
       ) : (
-        <Tilt key={title}>
+        <Tilt>
           <img
-            id={title}
             src={img}
             alt={title + " cover image"}
             style={{
@@ -61,28 +65,27 @@ export const BookItemComponent = ({ title, author, img }: BookItemProps) => {
         </Tilt>
       )}
 
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
+      <Box sx={{ display: "flex", flexDirection: "column", maxWidth: "250px" }}>
+        <Typography variant="h5">{TitlesAndNames.Title}</Typography>
+
         <Typography
           sx={{
             marginBottom: "10px",
-            display: "flex",
-            flexDirection: "column",
           }}
-          color={theme.typography.h6}
+          variant="h6"
         >
-          <Typography color={theme.typography.h5}> Title</Typography>{" "}
-          {truncatedTitle}
+          {truncatedTitle || MissingInformations.MissingTitle}
         </Typography>
+
+        <Typography variant="h5">{TitlesAndNames.Author}</Typography>
+
         <Typography
           sx={{
             marginBottom: "10px",
-            display: "flex",
-            flexDirection: "column",
           }}
-          color={theme.typography.h6}
+          variant="h6"
         >
-          <Typography color={theme.typography.h5}> Author</Typography>{" "}
-          {truncatedAuthor}
+          {truncatedAuthor || MissingInformations.MissingAuthor}
         </Typography>
       </Box>
     </Box>
