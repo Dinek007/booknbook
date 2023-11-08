@@ -1,27 +1,34 @@
-# React + TypeScript + Vite
+# BooknBook - A Simple React Book Search App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the BooknBook project! This is a simple React web application that allows users to search for books using the Google Books API.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To run this application on your local machine, follow these steps:
 
-## Expanding the ESLint configuration
+1. Clone this repository to your local machine using Git:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+```bash
+git clone <repository_url>
+```
+Navigate to the project directory:
 
-- Configure the top-level `parserOptions` property like this:
+```bash
+cd booknbook
+```
+Install the project dependencies:
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```bash
+npm install
+```
+Run the application in development mode:
+
+```bash
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+To run the unit tests for this application, you can use the following command:
+
+```bash
+npm test
+```
