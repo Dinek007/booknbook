@@ -8,7 +8,7 @@ export enum TitlesAndNames {
   ButtonSearch = "Search",
   Title = "Title",
   Author = "Author",
-  FilterByQueryInTitle = "Filter by query included in the title",
+  FilterByQueryInTitle = "Filter search results by a phrase contained in the title.",
 }
 
 export enum Communicates {

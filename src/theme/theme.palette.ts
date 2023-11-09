@@ -3,8 +3,8 @@ import createPalette from "@mui/material/styles/createPalette";
 export const getPalette = () => {
   return createPalette({
     background: {
-      default: "#1A120B",
-      paper: "#3C2A21",
+      default: "#FAE7C9",
+      paper: "#E1C78F",
     },
     success: {
       main: "#ffffff",
@@ -16,8 +16,8 @@ export const getPalette = () => {
       main: "#ff0000",
     },
     text: {
-      primary: "#E5E5CB",
-      secondary: "#D5CEA3",
+      primary: "#a0825A",
+      secondary: "#706233",
     },
   });
 };

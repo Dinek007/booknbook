@@ -18,7 +18,6 @@ export const SearchFormComponent: React.FC<SearchFormComponentPropsType> = ({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        marginBottom: "50px",
       }}
       onSubmit={handleSubmit}
     >

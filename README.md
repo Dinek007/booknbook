@@ -52,8 +52,11 @@ npm run lint
 ## Project Structure
 
 `src/pages`: Contains main pages as React components, in this case only one, but it's designed with the idea of expansion and a larger project in mind.
+
 `src/components`: Contains React components used in the application and unit tests for them.
+
 `src/redux`:  It contains a Redux Store where the entire application state is stored and the structure of Redux-Saga responsible for asynchronous operations, such as communication with the Google API. I have applied the following organization: in the main folder, there are configuration files, and in subfolders, various parts of the store (in this case, for a smaller application, only 'books') where you can find reducers with actions, selectors, and Redux-Sagas associated with actions from that part of the store.
+
 `src/theme`: Global project styles using the Material UI library include color palettes for text and background, text variants, and other styles for components like text areas and buttons.
 
 ## Testing

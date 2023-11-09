@@ -37,10 +37,10 @@ export const BookItemComponent: React.FC<BookItemPropsType> = ({
         },
         position: "relative",
         margin: "30px",
-        boxShadow: "0px 0px 10px 3px #111111",
+        boxShadow: "0px 0px 10px 1px #B0926A",
         padding: "20px",
-        backgroundColor: "rgba(100,100,100, 0.2)",
-        borderRadius: "10px",
+        backgroundColor: "rgba(255,255,255, 0.4)",
+        borderRadius: "7px",
       }}
     >
       {!img ? (
@@ -59,7 +59,7 @@ export const BookItemComponent: React.FC<BookItemPropsType> = ({
             style={{
               borderRadius: "5px",
               margin: "30px",
-              boxShadow: "0px 0px 10px 4px #000000",
+              boxShadow: "0px 0px 15px 3px #B0926A",
             }}
           />
         </Tilt>
