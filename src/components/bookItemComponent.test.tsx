@@ -37,6 +37,8 @@ describe("render book item component in every case", () => {
       author: "",
       title: "book'n'book",
       img: "http://books.google.com/books/content?id=0kFaAAAAYAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+      info: "",
+      id: "",
     };
 
     const imageAltText = `${bookItemProps.title} cover image`;
@@ -57,6 +59,8 @@ describe("render book item component in every case", () => {
       author: "Damian Wilk",
       title: "",
       img: "http://books.google.com/books/content?id=0kFaAAAAYAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+      info: "",
+      id: "",
     };
 
     const imageAltText = `${bookItemProps.title}cover image`;
@@ -77,6 +81,8 @@ describe("render book item component in every case", () => {
       author: "Damian Wilk",
       title: "book'n'book",
       img: "",
+      info: "",
+      id: "",
     };
 
     render(<BookItemComponent {...bookItemProps} />);

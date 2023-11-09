@@ -1,9 +1,8 @@
-import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import Tilt from "react-parallax-tilt";
 import BrokenImageIcon from "@mui/icons-material/BrokenImage";
 import { MissingInformations, TitlesAndNames } from "../consts";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import ViewInArIcon from "@mui/icons-material/ViewInAr";
 import { Tooltip } from "react-tooltip";
 
 export type BookItemPropsType = {
