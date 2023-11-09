@@ -12,14 +12,16 @@ describe("render book item component in every case", () => {
     };
   });
 
+  const bookItemData: BookItemPropsType = {
+    author: "Damian Wilk",
+    title: "book'n'book",
+    img: "http://books.google.com/books/content?id=0kFaAAAAYAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    info: "informations",
+    id: "123",
+  };
+
   it("render book item component with all data", () => {
-    const bookItemProps: BookItemPropsType = {
-      author: "Damian Wilk",
-      title: "book'n'book",
-      img: "http://books.google.com/books/content?id=0kFaAAAAYAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
-      info: "",
-      id: "",
-    };
+    const bookItemProps: BookItemPropsType = bookItemData;
 
     const imageAltText = `${bookItemProps.title} cover image`;
 
@@ -33,13 +35,7 @@ describe("render book item component in every case", () => {
   });
 
   it("render book item component without author data", () => {
-    const bookItemProps: BookItemPropsType = {
-      author: "",
-      title: "book'n'book",
-      img: "http://books.google.com/books/content?id=0kFaAAAAYAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
-      info: "",
-      id: "",
-    };
+    const bookItemProps: BookItemPropsType = { ...bookItemData, author: "" };
 
     const imageAltText = `${bookItemProps.title} cover image`;
 
@@ -55,13 +51,7 @@ describe("render book item component in every case", () => {
   });
 
   it("render book item component without title data", () => {
-    const bookItemProps: BookItemPropsType = {
-      author: "Damian Wilk",
-      title: "",
-      img: "http://books.google.com/books/content?id=0kFaAAAAYAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
-      info: "",
-      id: "",
-    };
+    const bookItemProps: BookItemPropsType = { ...bookItemData, title: "" };
 
     const imageAltText = `${bookItemProps.title}cover image`;
 
@@ -77,13 +67,7 @@ describe("render book item component in every case", () => {
   });
 
   it("render book item component without image data", () => {
-    const bookItemProps: BookItemPropsType = {
-      author: "Damian Wilk",
-      title: "book'n'book",
-      img: "",
-      info: "",
-      id: "",
-    };
+    const bookItemProps: BookItemPropsType = { ...bookItemData, img: "" };
 
     render(<BookItemComponent {...bookItemProps} />);
 
