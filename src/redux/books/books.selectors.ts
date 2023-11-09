@@ -14,7 +14,10 @@ const booksDataToShow = createSelector(booksSlice, (reducerState) => {
       img:
         item?.volumeInfo?.imageLinks?.thumbnail ||
         item?.volumeInfo?.imageLinks?.smallThumbnail,
-      id: `${item?.id}${Date.now()}${String.fromCharCode(65 + Math.floor(Math.random() * 1000))}`,
+      id: `${item?.id}${Date.now()}${String.fromCharCode(
+        65 + Math.floor(Math.random() * 1000)
+      )}`,
+      info: `Publish date: ${item?.volumeInfo?.publishedDate} , Language: ${item?.volumeInfo?.language}`,
     };
   });
 });

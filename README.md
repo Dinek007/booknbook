@@ -38,6 +38,13 @@ Runs ESLint to analyze the code for errors and rule compliance.
 npm run lint
 ```
 
+## Features
+
+**Searching for books in the Google API.**
+**Filtering by titles containing the user-entered phrase.**
+**Infinite scrolling for pagination.**
+**Errors handling**
+
 ## Technologies
 
 - **React**: JavaScript library for building user interfaces.

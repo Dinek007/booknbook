@@ -88,10 +88,9 @@ export const BookSearchPage = () => {
       {isLoading && (
         <CircularProgress
           sx={{
-            scale: "250%",
-            opacity: "50%",
+            scale: "200%",
           }}
-          color="inherit"
+          color="success"
         />
       )}
     </Box>

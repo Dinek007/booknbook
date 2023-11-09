@@ -20,7 +20,8 @@ export type BooksData = {
   title: string;
   author: string;
   img: string;
-  id?: string;
+  id: string;
+  info: string;
 };
 
 const initialBooksState: BooksType = {

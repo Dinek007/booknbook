@@ -7,7 +7,7 @@ export const getPalette = () => {
       paper: "#E1C78F",
     },
     success: {
-      main: "#ffffff",
+      main: "#706233",
     },
     error: {
       main: "#ff0000",

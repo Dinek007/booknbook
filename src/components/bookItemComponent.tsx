@@ -1,18 +1,25 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import Tilt from "react-parallax-tilt";
-import BrokenImageIcon from '@mui/icons-material/BrokenImage';
+import BrokenImageIcon from "@mui/icons-material/BrokenImage";
 import { MissingInformations, TitlesAndNames } from "../consts";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import ViewInArIcon from "@mui/icons-material/ViewInAr";
+import { Tooltip } from "react-tooltip";
 
 export type BookItemPropsType = {
   title: string;
   author: string;
   img: string;
+  id: string;
+  info: string;
 };
 
 export const BookItemComponent: React.FC<BookItemPropsType> = ({
   title,
   author,
   img,
+  id,
+  info,
 }) => {
   const theme = useTheme();
   const maxTitleLength = 60;
@@ -43,6 +50,36 @@ export const BookItemComponent: React.FC<BookItemPropsType> = ({
         borderRadius: "7px",
       }}
     >
+      <HelpOutlineIcon
+        id={id}
+        data-tooltip-id={id}
+        data-tooltip-content={info}
+        data-tooltip-variant="dark"
+        sx={{
+          position: "absolute",
+
+          right: "10px",
+          top: "10px",
+          color: theme.palette.background.paper,
+          fontSize: "25px",
+        }}
+      />
+
+      <Tooltip
+        style={{
+          zIndex: 100,
+          fontSize: 16,
+          color: theme.palette.background.paper,
+          maxWidth: "350px",
+          backgroundColor: "#121212",
+          boxShadow: `0px 0px 20px 5px ${theme.palette.background.default}`,
+          borderRadius: "12px",
+          padding: "20px",
+        }}
+        classNameArrow="bottom"
+        id={id}
+      />
+
       {!img ? (
         <BrokenImageIcon
           sx={{
@@ -59,7 +96,7 @@ export const BookItemComponent: React.FC<BookItemPropsType> = ({
             style={{
               borderRadius: "5px",
               margin: "30px",
-              boxShadow: "0px 0px 15px 3px #B0926A",
+              boxShadow: "0px 0px 5px 1px #B0926A",
             }}
           />
         </Tilt>
