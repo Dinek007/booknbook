@@ -4,7 +4,7 @@ import { Communicates } from "../consts";
 import { render, screen } from "@testing-library/react";
 
 describe("render error component", () => {
-  it("error componet rendered with corectly text", () => {
+  it("error componet renders with the correct text", () => {
     const messageProp = Communicates.NotFound;
     render(<ErrorComponent message={messageProp} />);
 

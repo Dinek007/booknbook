@@ -1,4 +1,4 @@
-import { Box, Checkbox, Typography } from "@mui/material";
+import { Box, Checkbox, FormControlLabel, useTheme } from "@mui/material";
 import { TitlesAndNames } from "../consts";
 
 export type FilterComponentPropsType = {
@@ -8,6 +8,8 @@ export type FilterComponentPropsType = {
 export const FilterComponent: React.FC<FilterComponentPropsType> = ({
   setIsfilterByQueryTitle,
 }) => {
+  const theme = useTheme();
+
   return (
     <Box
       sx={{
@@ -18,15 +20,20 @@ export const FilterComponent: React.FC<FilterComponentPropsType> = ({
         marginBottom: "50px",
       }}
     >
-      <Checkbox
+      <FormControlLabel
+        htmlFor="filter-checkbox"
+        label={TitlesAndNames.FilterByQueryInTitle}
+        sx={{ color: theme.palette.text.secondary }}
         color="default"
-        onChange={(_event, checked) => {
-          setIsfilterByQueryTitle(checked);
-        }}
+        control={
+          <Checkbox
+            color="default"
+            onChange={(_event, checked) => {
+              setIsfilterByQueryTitle(checked);
+            }}
+          />
+        }
       />
-      <Typography variant="h6">
-        {TitlesAndNames.FilterByQueryInTitle}
-      </Typography>
     </Box>
   );
 };

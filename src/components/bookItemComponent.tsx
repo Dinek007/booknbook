@@ -33,6 +33,7 @@ export const BookItemComponent: React.FC<BookItemPropsType> = ({
 
   return (
     <Box
+      title="Book Item"
       sx={{
         width: "450px",
         display: "flex",

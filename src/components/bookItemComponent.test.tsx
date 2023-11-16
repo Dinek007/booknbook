@@ -12,12 +12,16 @@ describe("render book item component in every case", () => {
     };
   });
 
+  jest.mock("react-tooltip", () => ({
+    Tooltip: ({ id }: { id: string }) => <div data-testid={`tooltip-${id}`} />,
+  }));
+
   const bookItemData: BookItemPropsType = {
-    author: "Damian Wilk",
-    title: "book'n'book",
-    img: "http://books.google.com/books/content?id=0kFaAAAAYAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
-    info: "informations",
-    id: "123",
+    id: "1",
+    title: "Book 1",
+    author: "Author 1",
+    img: "book-1-image-url",
+    info: "Information 1",
   };
 
   it("render book item component with all data", () => {
